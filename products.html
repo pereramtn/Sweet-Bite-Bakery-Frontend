@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Our Products | Sweet Bite Bakery</title>
+
+    <!-- bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- style CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand fw-bold brand" href="index.html">
+            <img src="images/bakery-logo.png" alt="Bakery Logo">
+        </a>
+
+        <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="products.html">Products</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="cart.html"><span class="cart-icon">🛒</span> </a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Heading -->
+<section class="page-banner text-center">
+    <div class="container">
+        <p class="subtitle">FRESHLY BAKED WITH LOVE</p>
+        <h1>Our Delicious Products</h1>
+        <p>Discover your favourite treats, made fresh for every occasion.</p>
+    </div>
+</section>
+
+
+<!-- Products Section -->
+<section class="products-section py-1">
+    <div class="container">
+
+        <!-- Section Heading -->
+        <div class="text-center mb-3">
+            
+            <p>Freshly baked with love, just for you!</p>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="text-center mb-5">
+            <button class="btn main-btn filter-btn active"
+                onclick="filterProducts('all', this)">All Products</button>
+
+            <button class="btn outline-btn filter-btn"
+                onclick="filterProducts('cake', this)">Cakes</button>
+
+            <button class="btn outline-btn filter-btn"
+                onclick="filterProducts('cupcake', this)">Cupcakes</button>
+
+            <button class="btn outline-btn filter-btn"
+                onclick="filterProducts('pastry', this)">Pastries</button>
+
+            <button class="btn outline-btn filter-btn"
+                onclick="filterProducts('snack', this)">Bakery Snacks</button>
+
+            <button class="btn outline-btn filter-btn"
+                onclick="filterProducts('drink', this)">Drinks</button>
+
+            <button class="btn outline-btn filter-btn"
+                onclick="filterProducts('bread', this)">Bread</button>
+        </div>
+
+        <!-- Product List -->
+        <div class="row g-4" id="productList">
+
+            <!-- Cake items -->
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="cake">
+                <div class="product-card">
+                    <img src="images/birthday-cake.jpg" alt="Birthday Cake">
+                    <div class="product-info">
+                        <h5>Birthday Cake</h5>
+                        <p>A beautiful cake for your special day.</p>
+                        <h5>Rs. 4,500</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(1)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="cake">
+                <div class="product-card">
+                    <img src="images/chocolate-cake.webp" alt="Chocolate Cake">
+                    <div class="product-info">
+                        <h5>Chocolate Cake</h5>
+                        <p>Rich chocolate flavour in every bite.</p>
+                        <h5>Rs. 3,800</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(2)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="cake">
+                <div class="product-card">
+                    <img src="images/wedding-cakes.jpg" alt="Wedding Cake">
+                    <div class="product-info">
+                        <h5>Wedding Cake</h5>
+                        <p>Elegant designs for unforgettable moments.</p>
+                        <h5>Rs. 15,000</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(3)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="cake">
+                <div class="product-card">
+                    <img src="images/red-velvet-cake.jpg" alt="Red Velvet Cake">
+                    <div class="product-info">
+                        <h5>Red Velvet Cake</h5>
+                        <p>Soft red velvet with creamy frosting.</p>
+                        <h5>Rs. 4,200</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(4)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="cake">
+                <div class="product-card">
+                    <img src="images/black-forest-cake.webp" alt="Black Forest Cake">
+                    <div class="product-info">
+                        <h5>Black Forest Cake</h5>
+                        <p>Chocolate, cream and delicious cherry flavours.</p>
+                        <h5>Rs. 4,000</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(5)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="cake">
+                <div class="product-card">
+                    <img src="images/vanilla-cake.jpg" alt="Vanilla Cake">
+                    <div class="product-info">
+                        <h5>Vanilla Cake</h5>
+                        <p>A classic, soft and fluffy vanilla cake.</p>
+                        <h5>Rs. 3,500</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(6)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+        <!--Cupcake items -->
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="cupcake">
+                <div class="product-card">
+                    <img src="images/cup-cakes.webp" alt="Vanilla Cupcakes">
+                    <div class="product-info">
+                        <h5>Vanilla Cupcakes</h5>
+                        <p>Soft vanilla cupcakes with creamy frosting.</p>
+                        <h5>Rs. 350</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(7)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="cupcake">
+                <div class="product-card">
+                    <img src="images/chocolate-cupcake.jpg" alt="Chocolate Cupcakes">
+                    <div class="product-info">
+                        <h5>Chocolate Cupcakes</h5>
+                        <p>Delicious chocolate treats for everyone.</p>
+                        <h5>Rs. 400</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(8)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="cupcake">
+                <div class="product-card">
+                    <img src="images/strawberry-cupcake.jpg" alt="Strawberry Cupcake">
+                    <div class="product-info">
+                        <h5>Strawberry Cupcake</h5>
+                        <p>Sweet strawberry flavour with pink frosting.</p>
+                        <h5>Rs. 420</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(9)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="cupcake">
+                <div class="product-card">
+                    <img src="images/red-velvet-cupcake.jpg" alt="Red Velvet Cupcake">
+                    <div class="product-info">
+                        <h5>Red Velvet Cupcake</h5>
+                        <p>Moist red velvet topped with cream cheese frosting.</p>
+                        <h5>Rs. 450</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(10)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pastry items -->
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="pastry">
+                <div class="product-card">
+                    <img src="images/croissant.jpg" alt="Butter Croissant">
+                    <div class="product-info">
+                        <h5>Butter Croissant</h5>
+                        <p>Golden, crispy and freshly baked.</p>
+                        <h5>Rs. 280</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(11)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="pastry">
+                <div class="product-card">
+                    <img src="images/donut.jpg" alt="Chocolate Donut">
+                    <div class="product-info">
+                        <h5>Chocolate Donut</h5>
+                        <p>A soft donut covered in chocolate.</p>
+                        <h5>Rs. 250</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(12)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="pastry">
+                <div class="product-card">
+                    <img src="images/cream-puff.jpg" alt="Cream Puff">
+                    <div class="product-info">
+                        <h5>Cream Puff</h5>
+                        <p>Light pastry filled with delicious cream.</p>
+                        <h5>Rs. 220</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(13)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="pastry">
+                <div class="product-card">
+                    <img src="images/fruit-pastry.jpg" alt="Fruit Pastry">
+                    <div class="product-info">
+                        <h5>Fruit Pastry</h5>
+                        <p>Fresh fruit, soft sponge and creamy layers.</p>
+                        <h5>Rs. 380</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(14)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="pastry">
+                <div class="product-card">
+                    <img src="images/egg-pastry.jpg" alt="Egg Pastry">
+                    <div class="product-info">
+                        <h5>Egg Pastry</h5>
+                        <p>A savoury pastry with a tasty filling.</p>
+                        <h5>Rs. 200</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(15)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- bakery snack items -->
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="snack">
+                <div class="product-card">
+                    <img src="images/fish-roll.jpg" alt="Fish Roll">
+                    <div class="product-info">
+                        <h5>Fish Roll</h5>
+                        <p>Crispy golden roll with a spicy fish filling.</p>
+                        <h5>Rs. 150</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(16)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="snack">
+                <div class="product-card">
+                    <img src="images/egg-roll.jpg" alt="Egg Roll">
+                    <div class="product-info">
+                        <h5>Egg Roll</h5>
+                        <p>A tasty roll filled with egg and spices.</p>
+                        <h5>Rs. 130</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(17)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="snack">
+                <div class="product-card">
+                    <img src="images/fish-bun.jpg" alt="Fish Bun">
+                    <div class="product-info">
+                        <h5>Fish Bun</h5>
+                        <p>Soft bun with a flavourful fish filling.</p>
+                        <h5>Rs. 180</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(18)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="snack">
+                <div class="product-card">
+                    <img src="images/vegetable-roll.jpg" alt="Vegetable Roll">
+                    <div class="product-info">
+                        <h5>Vegetable Roll</h5>
+                        <p>Crispy roll filled with seasoned vegetables.</p>
+                        <h5>Rs. 120</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(19)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="snack">
+                <div class="product-card">
+                    <img src="images/fish-patty.jpg" alt="Fish Patty">
+                    <div class="product-info">
+                        <h5>Fish Patty</h5>
+                        <p>Golden pastry filled with seasoned fish.</p>
+                        <h5>Rs. 140</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(20)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="snack">
+                <div class="product-card">
+                    <img src="images/sausage-roll.jpg" alt="Sausage Roll">
+                    <div class="product-info">
+                        <h5>Sausage Roll</h5>
+                        <p>A savoury pastry wrapped around a tasty sausage.</p>
+                        <h5>Rs. 200</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(21)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drinks-->
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="drink">
+                <div class="product-card">
+                    <img src="images/iced-coffee.jpg" alt="Iced Coffee">
+                    <div class="product-info">
+                        <h5>Iced Coffee</h5>
+                        <p>Refreshing chilled coffee for coffee lovers.</p>
+                        <h5>Rs. 450</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(22)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="drink">
+                <div class="product-card">
+                    <img src="images/fresh-orange-juice.jpg" alt="Fresh Orange Juice">
+                    <div class="product-info">
+                        <h5>Fresh Orange Juice</h5>
+                        <p>Fresh, fruity and naturally refreshing.</p>
+                        <h5>Rs. 350</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(23)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="drink">
+                <div class="product-card">
+                    <img src="images/milkshake.jpg" alt="Chocolate Milkshake">
+                    <div class="product-info">
+                        <h5>Chocolate Milkshake</h5>
+                        <p>Creamy chocolate goodness in every sip.</p>
+                        <h5>Rs. 500</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(24)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bread items -->
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="bread">
+                <div class="product-card">
+                    <img src="images/fresh-bread.jpg" alt="Fresh Bread">
+                    <div class="product-info">
+                        <h5>Fresh Bread</h5>
+                        <p>Soft, fresh bread for your everyday meals.</p>
+                        <h5>Rs. 180</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(25)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="bread">
+                <div class="product-card">
+                    <img src="images/brown-bread.jpg" alt="Brown Bread">
+                    <div class="product-info">
+                        <h5>Brown Bread</h5>
+                        <p>A wholesome loaf for your daily breakfast.</p>
+                        <h5>Rs. 250</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(26)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 product-item" data-category="bread">
+                <div class="product-card">
+                    <img src="images/garlic-bread.jpg" alt="Garlic Bread">
+                    <div class="product-info">
+                        <h5>Garlic Bread</h5>
+                        <p>Toasted bread with delicious garlic flavour.</p>
+                        <h5>Rs. 300</h5>
+                        <button class="btn main-btn w-100" onclick="addToCart(27)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+
+        <div class="row align-items-center py-4">
+
+            <!-- Left Side: Bakery Name -->
+            <div class="col-md-6 text-center text-md-start">
+                <h3 class="brand">
+    <img src="images/bakery-logo.png" alt="Sweet Bite Bakery Logo">
+    
+</h3>
+                <p>Making every celebration a little sweeter.</p>
+            </div>
+
+            <!-- Right Side: Contact Details -->
+            <div class="col-md-6 text-center text-md-start">
+                <p>📍 Colombo, Sri Lanka</p>
+                <p>📞 +94 77 123 4567</p>
+                <p>✉️ sweetbite@example.com</p>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <!-- Centered Footer Links -->
+        <div class="footer-links text-center mb-3">
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </div>
+
+        <!-- Copyright -->
+        <p class="copyright text-center mb-0">
+            © 2026 Sweet Bite Bakery. All Rights Reserved.
+        </p>
+
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="cart.js"></script>
+
+<script>
+function filterProducts(category, button) {
+    document.querySelectorAll(".product-item").forEach(item => {
+        item.style.display =
+            category === "all" || item.dataset.category === category
+                ? ""
+                : "none";
+    });
+
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+}
+</script>
+
+</body>
+
+</html>

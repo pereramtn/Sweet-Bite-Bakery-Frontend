@@ -1,0 +1,652 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Order Tracking | Sweet Bite Bakery</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            background: #FFF9F4;
+        }
+
+        .tracking-wrapper {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .tracking-card {
+            background: #fff;
+            padding: 30px;
+            border: 1px solid #E8DCD5;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(24, 12, 11, .06);
+        }
+
+        .success-icon {
+            width: 70px;
+            height: 70px;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background: #64141A;
+            color: #fff;
+            font-size: 35px;
+        }
+
+        .tracking-title {
+            color: #64141A;
+            font-weight: 700;
+        }
+
+        .order-number {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #FFF1EB;
+            color: #64141A;
+            border-radius: 30px;
+            font-weight: 700;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 7px 12px;
+            background: #F5E9E1;
+            color: #64141A;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .tracking-timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 35px 0 20px;
+            gap: 5px;
+        }
+
+        .tracking-timeline::before {
+            content: "";
+            position: absolute;
+            top: 22px;
+            left: 9%;
+            right: 9%;
+            height: 4px;
+            background: #E8DCD5;
+        }
+
+        .tracking-progress {
+            position: absolute;
+            top: 22px;
+            left: 9%;
+            height: 4px;
+            width: 0;
+            background: #64141A;
+            transition: width .4s ease;
+        }
+
+        .tracking-step {
+            position: relative;
+            z-index: 1;
+            width: 20%;
+            text-align: center;
+        }
+
+        .tracking-step .step-icon {
+            width: 46px;
+            height: 46px;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #F0E7E1;
+            border: 3px solid #E8DCD5;
+            font-size: 19px;
+        }
+
+        .tracking-step.completed .step-icon,
+        .tracking-step.active .step-icon {
+            background: #64141A;
+            color: #fff;
+            border-color: #64141A;
+        }
+
+        .tracking-step strong {
+            display: block;
+            font-size: 13px;
+            color: #180C0B;
+        }
+
+        .tracking-step small {
+            display: block;
+            margin-top: 5px;
+            color: #81716A;
+            font-size: 11px;
+        }
+
+        .section-heading {
+            color: #64141A;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid #F0E7E1;
+        }
+
+        .detail-row span {
+            color: #786A63;
+        }
+
+        .detail-row strong {
+            text-align: right;
+            overflow-wrap: anywhere;
+        }
+
+        .order-product {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 13px 0;
+            border-bottom: 1px solid #F0E7E1;
+        }
+
+        .total-row {
+            color: #64141A;
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+        .tracking-note {
+            background: #FFF1EB;
+            border-radius: 12px;
+            padding: 16px;
+            color: #64141A;
+        }
+
+        @media (max-width: 600px) {
+            .tracking-card {
+                padding: 18px;
+            }
+
+            .tracking-timeline {
+                flex-direction: column;
+                gap: 20px;
+                margin: 25px 0;
+            }
+
+            .tracking-timeline::before,
+            .tracking-progress {
+                display: none;
+            }
+
+            .tracking-step {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                text-align: left;
+                gap: 12px;
+            }
+
+            .tracking-step .step-icon {
+                margin: 0;
+                flex-shrink: 0;
+            }
+
+            .tracking-step small {
+                margin-top: 3px;
+            }
+
+            .detail-row {
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand brand" href="index.html">
+            <img src="images/bakery-logo.png" alt="Sweet Bite Bakery">
+        </a>
+
+        <a href="products.html" class="btn outline-btn">Shop More</a>
+    </div>
+</nav>
+
+<section class="py-5">
+    <div class="container tracking-wrapper">
+
+        <div class="tracking-card text-center mb-4">
+            <div class="success-icon mb-3">✓</div>
+
+            <p class="subtitle">SWEET MOMENTS AHEAD</p>
+            <h1 class="tracking-title">Thank You for Your Order!</h1>
+
+            <p class="text-muted mt-2">
+                Your order details and delivery progress are shown below.
+            </p>
+
+            <div class="mt-3">
+                <span class="order-number">
+                    Order #<span id="orderNumber">Loading...</span>
+                </span>
+            </div>
+
+            <div class="mt-3">
+                <span class="status-badge" id="orderStatus">
+                    Order Placed
+                </span>
+            </div>
+        </div>
+
+        <!-- Tracking -->
+        <div class="tracking-card mb-4">
+            <h3 class="section-heading">Track Your Order</h3>
+
+            <p class="text-muted" id="trackingMessage">
+                Your order progress will appear here.
+            </p>
+
+            <div class="tracking-timeline" id="trackingTimeline">
+
+                <div class="tracking-progress" id="trackingProgress"></div>
+
+                <div class="tracking-step" data-step="0">
+                    <div class="step-icon">✓</div>
+                    <div>
+                        <strong>Order Placed</strong>
+                        <small>Order received</small>
+                    </div>
+                </div>
+
+                <div class="tracking-step" data-step="1">
+                    <div class="step-icon">♨</div>
+                    <div>
+                        <strong>Preparing</strong>
+                        <small>Freshly prepared</small>
+                    </div>
+                </div>
+
+                <div class="tracking-step" data-step="2">
+                    <div class="step-icon">📦</div>
+                    <div>
+                        <strong>Ready</strong>
+                        <small>Ready for dispatch</small>
+                    </div>
+                </div>
+
+                <div class="tracking-step" data-step="3">
+                    <div class="step-icon">🚚</div>
+                    <div>
+                        <strong>On the Way</strong>
+                        <small>Out for delivery</small>
+                    </div>
+                </div>
+
+                <div class="tracking-step" data-step="4">
+                    <div class="step-icon">🏠</div>
+                    <div>
+                        <strong>Delivered</strong>
+                        <small>Enjoy your treats</small>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="tracking-note mt-4">
+                <strong>Current update</strong>
+                <p class="mb-0 mt-1" id="currentUpdate">
+                    Waiting for order information.
+                </p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+
+            <!-- Ordered Products -->
+            <div class="col-lg-7">
+                <div class="tracking-card h-100">
+                    <h3 class="section-heading">Order Details</h3>
+
+                    <div id="successItems"></div>
+
+                    <div class="detail-row mt-3">
+                        <span>Product Subtotal</span>
+                        <strong id="successSubtotal">Rs. 0.00</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>Delivery Fee</span>
+                        <strong id="successDelivery">To be confirmed</strong>
+                    </div>
+
+                    <div class="d-flex justify-content-between gap-3 mt-4 total-row">
+                        <span>Order Total</span>
+                        <span id="successTotal">Rs. 0.00</span>
+                    </div>
+
+                    <p class="small text-muted mt-3 mb-0">
+                        If a delivery charge applies, contact the bakery to confirm
+                        the final amount.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Payment Details -->
+            <div class="col-lg-5">
+                <div class="tracking-card h-100">
+                    <h3 class="section-heading">Payment Details</h3>
+
+                    <div class="detail-row">
+                        <span>Payment Method</span>
+                        <strong id="paymentMethod">-</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>Payment Status</span>
+                        <strong id="paymentStatus">-</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>Order Date</span>
+                        <strong id="orderDate">-</strong>
+                    </div>
+
+                    <p class="small text-muted mt-3 mb-0">
+                        Bank transfers must be verified by the bakery before
+                        payment is marked as confirmed.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Customer and Delivery Details -->
+            <div class="col-12">
+                <div class="tracking-card">
+                    <h3 class="section-heading">Delivery Details</h3>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="detail-row">
+                                <span>Customer Name</span>
+                                <strong id="successName">-</strong>
+                            </div>
+
+                            <div class="detail-row">
+                                <span>Phone</span>
+                                <strong id="successPhone">-</strong>
+                            </div>
+
+                            <div class="detail-row">
+                                <span>Email</span>
+                                <strong id="successEmail">-</strong>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="detail-row">
+                                <span>Address</span>
+                                <strong id="successAddress">-</strong>
+                            </div>
+
+                            <div class="detail-row">
+                                <span>District</span>
+                                <strong id="successDistrict">-</strong>
+                            </div>
+
+                            <div class="detail-row">
+                                <span>Postal Code</span>
+                                <strong id="successPostal">-</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>Delivery Instructions</span>
+                        <strong id="successInstructions">None</strong>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="products.html" class="btn main-btn me-2">
+                Continue Shopping
+            </a>
+
+            <a href="index.html" class="btn outline-btn">
+                Back to Home
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container text-center py-4">
+        <p>Sweet Bite Bakery — Making every celebration a little sweeter.</p>
+        <p class="mb-0">© 2026 Sweet Bite Bakery. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script>
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[character]);
+}
+
+function money(amount) {
+    return "Rs. " + Number(amount || 0).toLocaleString("en-LK", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+}
+
+let order = null;
+
+try {
+    order = JSON.parse(localStorage.getItem("sweetBiteLastOrder"));
+} catch {
+    order = null;
+}
+
+if (
+    !order ||
+    !order.customer ||
+    !Array.isArray(order.items) ||
+    order.items.length === 0
+) {
+    document.querySelector(".tracking-wrapper").innerHTML = `
+        <div class="tracking-card text-center">
+            <h1 class="tracking-title">Order Details Unavailable</h1>
+            <p>We couldn't find your order details in this browser.</p>
+            <a href="cart.html" class="btn main-btn">Return to Cart</a>
+            <a href="products.html" class="btn outline-btn">View Products</a>
+        </div>
+    `;
+} else {
+    const customer = order.customer;
+
+    // Order information
+    document.getElementById("orderNumber").textContent =
+        order.orderId || "Not available";
+
+    document.getElementById("orderStatus").textContent =
+        order.orderStatus || "Order placed";
+
+    document.getElementById("paymentMethod").textContent =
+        order.paymentMethod || "Not specified";
+
+    document.getElementById("paymentStatus").textContent =
+        order.paymentStatus || "Pending";
+
+    // Order date
+    let dateText = "Not available";
+
+    if (order.placedAt) {
+        const date = new Date(order.placedAt);
+
+        if (!Number.isNaN(date.getTime())) {
+            dateText = date.toLocaleString("en-LK", {
+                dateStyle: "medium",
+                timeStyle: "short"
+            });
+        }
+    }
+
+    document.getElementById("orderDate").textContent = dateText;
+
+    // Product list
+    const subtotal = order.items.reduce((sum, item) => {
+        const quantity = Math.max(1, Number(item.quantity) || 1);
+        const price = Math.max(0, Number(item.price) || 0);
+
+        return sum + price * quantity;
+    }, 0);
+
+    document.getElementById("successItems").innerHTML =
+        order.items.map(item => {
+            const quantity = Math.max(1, Number(item.quantity) || 1);
+            const price = Math.max(0, Number(item.price) || 0);
+
+            return `
+                <div class="order-product">
+                    <div>
+                        <strong>${escapeHTML(item.name)}</strong>
+                        <div class="small text-muted">
+                            ${money(price)} × ${quantity}
+                        </div>
+                    </div>
+
+                    <strong>${money(price * quantity)}</strong>
+                </div>
+            `;
+        }).join("");
+
+    document.getElementById("successSubtotal").textContent =
+        money(subtotal);
+
+    document.getElementById("successTotal").textContent =
+        money(order.total ?? subtotal);
+
+    // Delivery details
+    document.getElementById("successName").textContent =
+        customer.name || "-";
+
+    document.getElementById("successPhone").textContent =
+        customer.phone || "-";
+
+    document.getElementById("successEmail").textContent =
+        customer.email || "-";
+
+    document.getElementById("successAddress").textContent =
+        customer.address || "-";
+
+    document.getElementById("successDistrict").textContent =
+        customer.district || "-";
+
+    document.getElementById("successPostal").textContent =
+        customer.postalCode || "Not provided";
+
+    document.getElementById("successInstructions").textContent =
+        customer.instructions || "None";
+
+    // Tracking timeline
+    // These labels must match the status saved by your ordering system.
+    const stages = [
+        {
+            names: [
+                "order placed",
+                "order placed - awaiting bakery confirmation",
+                "pending confirmation"
+            ],
+            message: "Your order has been received."
+        },
+        {
+            names: ["preparing", "preparing order", "being prepared"],
+            message: "The bakery is preparing your order."
+        },
+        {
+            names: ["ready", "ready for dispatch", "ready for delivery"],
+            message: "Your order is ready for dispatch."
+        },
+        {
+            names: ["out for delivery", "on the way", "dispatched"],
+            message: "Your order is on its way."
+        },
+        {
+            names: ["delivered", "order delivered"],
+            message: "Your order has been delivered. Enjoy your treats!"
+        }
+    ];
+
+    const savedStatus = String(order.orderStatus || "Order Placed")
+        .trim()
+        .toLowerCase();
+
+    let activeStage = stages.findIndex(stage =>
+        stage.names.includes(savedStatus)
+    );
+
+    // Unknown statuses are shown as awaiting confirmation.
+    if (activeStage < 0) {
+        activeStage = 0;
+    }
+
+    const steps = document.querySelectorAll(".tracking-step");
+
+    steps.forEach((step, index) => {
+        step.classList.remove("completed", "active");
+
+        if (index < activeStage) {
+            step.classList.add("completed");
+        } else if (index === activeStage) {
+            step.classList.add("active");
+        }
+
+        const icon = step.querySelector(".step-icon");
+
+        if (index < activeStage) {
+            icon.textContent = "✓";
+        }
+    });
+
+    // Fill the connecting line based on current progress.
+    const progress = activeStage / (stages.length - 1) * 82;
+
+    document.getElementById("trackingProgress").style.width =
+        progress + "%";
+
+    document.getElementById("trackingMessage").textContent =
+        stages[activeStage].message;
+
+    document.getElementById("currentUpdate").textContent =
+        stages[activeStage].message;
+}
+</script>
+
+</body>
+</html>
